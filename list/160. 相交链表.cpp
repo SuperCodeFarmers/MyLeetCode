@@ -39,6 +39,11 @@ listB 中节点数目为 n
 如果 listA 和 listB 没有交点，intersectVal 为 0
 如果 listA 和 listB 有交点，intersectVal == listA[skipA + 1] == listB[skipB + 1]
 
+
+
+第一种解法:双循环遍历
+第二种解法:用两个指针分别把两个链表都跑一遍，如果两个链表有交点，则最后两个指针指向同一个结点，如果没有交点，则都为null
+
 */
 
 
@@ -67,4 +72,15 @@ ListNode *getIntersectionNode(ListNode *headA, ListNode *headB) {
         p = p->next;
     }
     return nullptr;
+}
+
+ListNode *getIntersectionNode2(ListNode *headA, ListNode *headB) {
+    ListNode* A = headA;
+    ListNode* B = headB;
+    while (A != B)
+    {
+        A = A != nullptr ? A->next : B;
+        B = B != nullptr ? B->next : A;
+    }
+    
 }
