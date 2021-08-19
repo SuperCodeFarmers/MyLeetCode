@@ -64,3 +64,21 @@ bool hasCycle(ListNode *head) {
     }
     return false;
 }
+
+//第二种解法
+/*
+逐个删除
+一个链表从头节点开始一个个删除，所谓删除就是让他的next指针指向他自己。
+如果没有环，从头结点一个个删除，最后肯定会删完.
+*/
+bool hasCycle2(ListNode *head) {
+    if (head == nullptr || head->next == nullptr) {
+        return false;
+    }
+    if (head == head->next) {
+        return true;
+    }
+    ListNode* nextNode = head->next;
+    head->next = head;
+    return hasCycle(nextNode);
+   }
