@@ -32,10 +32,6 @@ n 皇后问题 研究的是如何将 n 个皇后放置在 n×n 的棋盘上，�
 using namespace std;
 
 vector<vector<string> > res;
-vector<vector<string> > solveNQueens(int n) {
-    vector<string> board(n, string(n, '.'));
-
-}
 
 /*
 result = []
@@ -94,4 +90,10 @@ bool isValid(vector<string>& board, int row, int col) {
         }
     }
     return true;
+}
+
+vector<vector<string> > solveNQueens(int n) {
+    vector<string> board(n, string(n, '.'));
+    backtrack(board, 0);
+    return res;
 }
