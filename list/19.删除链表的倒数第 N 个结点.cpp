@@ -59,3 +59,23 @@ ListNode* removeNthFromEnd(ListNode* head, int n) {
     delete dummyHead;
     return retNode;
 }
+
+// 遍历一遍的解法
+ListNode *getKthFromEnd(ListNode *head, int k)
+{
+    int len = 0;
+    ListNode *p = head;
+    while (len < k)
+    {
+        ++len;
+        p = p->next;
+    }
+    int count = len - k;
+    ListNode *p2 = head;
+    while (p)
+    {
+        p = p->next;
+        p2 = p2->next;
+    }
+    return p2;
+}
