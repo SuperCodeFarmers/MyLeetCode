@@ -45,3 +45,41 @@ ListNode* reverseList(ListNode* head) {
     }
     return p;
 }
+
+ListNode* reverseList2(ListNode* head) {
+    if (head->next == nullptr) {
+        return head;
+    }
+    ListNode* ret = reverseList2(head->next);
+    head->next->next = head;
+    head->next = nullptr;
+    return ret;
+}
+
+//反转以head为起点的n个结点，返回新的头结点
+ListNode* success;
+ListNode* reverseListN(ListNode* head, int n) {
+    if (n == 1) {
+        // 记录第n+1个结点
+        success = head->next;
+        return head;
+    }
+    // 以head->next为起点，需要反转前n-1个结点
+    ListNode* ret = reverseListN(head->next, n - 1);
+
+    head->next->next = head;
+    // 反转之后的head结点和后面的结点连接起来
+    head->next = success;
+    return ret;
+}
+
+//一部分
+ListNode* reverseBetween(ListNode* head, int m, int n)
+{
+    if (m == 1) {
+        return reverseListN(head, n);
+    }
+    // 我们可以把反转一部分变为反转前N个
+    head->next = reverseBetween(head->next, m - 1, n - 1);
+    return head;
+}
